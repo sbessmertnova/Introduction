@@ -85,5 +85,21 @@ namespace OOP_lesson2
                 return generatedAccountNumber;
             }
         }
+        /// <summary>
+        /// метод для уменьшения баланса на определенную сумму
+        /// </summary>
+        /// <param name="account">счет, с которого будет списана сумма</param>
+        /// <param name="sum">сумма для списания</param>
+        /// <returns></returns>
+        public static int WithdrawFunds(BankAccount account, int sum)
+        {
+            if (account.Balance<sum)
+            {
+                Console.WriteLine("Недостаточно средств на счете");
+                return 0;
+            }
+            return account.Balance - sum;           
+        }
+
     }
 }
