@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOP_Lesson8
 {
-    public class Methods
+    public class Helpers
     {
         private readonly int pageSize;
 
-        public Methods(int pageSize)
+        public Helpers(int pageSize)
         {
             this.pageSize = pageSize;
         }
-
-
 
         /// <summary>
         /// обрабатывает ошибки, которые могут возникнуть в операциях с каталогами
@@ -156,44 +152,7 @@ namespace OOP_Lesson8
             var dest = CheckUserKeySecondValue(userValues).Item2;
             return (true, sourse, dest);
         }
-        ///// <summary>
-        ///// 
-        ///// </summary>
-        ///// <param name="currentIndex"></param>
-        ///// <param name="path"></param>
-        //public static void PrintFiles(int currentIndex, string path)
-        //{
-        //    Console.Clear();
-        //    string[] files = Directory.GetFiles(path);
-        //    for (int i = 0; i < files.Length; i++)
-        //    {
-        //        if (currentIndex == i)
-        //        {
-        //            ConsoleColor current = Console.BackgroundColor;
 
-        //            Console.BackgroundColor = ConsoleColor.Yellow;
-
-        //            PrintFileInfo(files[i]);
-
-        //            Console.BackgroundColor = current;
-
-        //            continue;
-        //        }
-        //        PrintFileInfo(files[i]);
-        //    }
-        //}
-        /// <summary>
-        /// выводит в консоль информацию о файле
-        /// </summary>
-        /// <param name="file">путь до файла</param>
-        public static void PrintFileInfo(string file)
-        {
-            FileInfo info = new FileInfo(file);
-
-            Console.WriteLine($"{info.FullName} {info.Length} bytes. " +
-                $"Last write time: {info.LastWriteTime}. From directory: {info.DirectoryName}" +
-                $"Atributes: readonly - {info.IsReadOnly}, hidden - {info.Attributes.HasFlag(FileAttributes.Hidden)}");
-        }
         /// <summary>
         /// выводит в консоль информацию о каталоге
         /// </summary>
@@ -201,8 +160,8 @@ namespace OOP_Lesson8
         public static void PrintFolderInfo(string path)
         {
             DirectoryInfo info = new DirectoryInfo(path);
-
-            Console.WriteLine($"{info.FullName} {info.GetFiles().Length} files. " +
+            var size = info.EnumerateFiles("*", SearchOption.AllDirectories).Sum(file => file.Length);
+            Console.WriteLine($"{info.FullName} {info.GetFiles().Length} files, total {size} bytes. " +
                 $"Last write time: {info.LastWriteTime}. Creation time: {info.CreationTime}" +
                 $"Atributes: readonly - {info.Attributes.HasFlag(FileAttributes.ReadOnly)}, hidden - {info.Attributes.HasFlag(FileAttributes.Hidden)}");
         }
@@ -285,53 +244,6 @@ namespace OOP_Lesson8
             return (results,
                 results.Skip(minValue).Take(pageSize).ToList());
         }
-        ///// <summary>
-        ///// выводит дерево каталога
-        ///// </summary>
-        ///// <param name="directory"></param>
-        ///// <param name="level"></param>
-        ///// <param name="maxLevel"></param>
-        ///// <param name="page"></param>
-        ///// <param name="currentPosition"></param>
-        //public static void PrintDir(string directory, int level, int maxLevel, int page = 1,
-        //    int currentPosition = 0)
-        //{
-        //    var pageSize = Properties.Settings.Default.pageSize;
-        //    var skipFiles = (pageSize * page) - pageSize;
-        //    var maxFileToShow = skipFiles + pageSize;
 
-        //    try
-        //    {
-        //        string[] dirs = Directory.GetDirectories(directory);
-        //        for (int i = 0; i < dirs.Length; i++)
-        //        {
-        //            currentPosition = i;
-        //            if (currentPosition < skipFiles || currentPosition >= maxFileToShow)
-        //            {
-        //                break;
-        //            }
-        //            string childDir = dirs[i];
-        //            WriteLeveledLine(childDir, level);
-        //            PrintDir(childDir, level + 1, maxLevel);
-        //        }
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Console.WriteLine($"Неправильная директория:{directory}");
-        //    }
-        //}
-        ///// <summary>
-        ///// выводит в консоль стороки с отступами
-        ///// </summary>
-        ///// <param name="value"></param>
-        ///// <param name="levelNumber"></param>
-        //private static void WriteLeveledLine(string value, int levelNumber)
-        //{
-        //    for (int z = 0; z < levelNumber; z++)
-        //    {
-        //        Console.Write("\t");
-        //    }
-        //    Console.WriteLine(value);
-        //}
     }
 }
