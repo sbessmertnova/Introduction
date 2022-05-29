@@ -17,9 +17,6 @@ namespace Algorithms_lesson1
             var nextItem = this.NextNode;
             var newNode = new Node { Value = value, PrevNode = this, NextNode = nextItem };
             this.NextNode = newNode;
-            //newNode.NextNode = nextItem;
-
-
         }
         public void AddNodeAfter(Node node, int value)
         {
@@ -45,32 +42,6 @@ namespace Algorithms_lesson1
                 findingNode = findingNode.NextNode;
             }
             return null;
-
-            //if (this.NextNode != null)
-            //{
-            //    while (this.NextNode != null)
-            //    {
-            //        if (this.Value == searchValue)
-            //        {
-            //            return this;
-            //        }
-            //        this.NextNode.PrevNode = this.NextNode;
-            //    }
-            //    if (this.PrevNode != null)
-            //    {
-            //        while (this.PrevNode != null)
-            //        {
-            //            if (this.Value == searchValue)
-            //            {
-            //                return this;
-            //            }
-            //            this.PrevNode.NextNode = this.PrevNode;
-            //        }
-            //        return null;
-            //    }
-            //    return null;
-            //}
-            //else return null;
         }
 
         public int GetCount()
@@ -88,27 +59,6 @@ namespace Algorithms_lesson1
                 count++;               
             }
             return count;
-
-            //var temp = 1;
-            //if (this.NextNode != null)
-            //{
-            //    while (this.NextNode != null)
-            //    {
-            //        temp++;
-            //        this.NextNode = this.NextNode.NextNode;
-            //    }
-            //    if (this.PrevNode == null)
-            //    {
-            //        return temp;
-            //    }
-            //    else
-            //    {
-            //        temp++;
-            //        this.PrevNode = this.PrevNode.PrevNode;
-            //        return temp;
-            //    }
-            //}
-            //else return 1;
         }
 
         public void RemoveNode(int index)
@@ -145,7 +95,7 @@ namespace Algorithms_lesson1
             node1.AddNode(5);
             node1.AddNode(3);
             node1.AddNode(2);
-            var count = node1.GetCount();
+            Console.WriteLine($"Nodes count: {node1.GetCount()}");
             //1, 2, 3, 5
 
             var thirdnode = node1.FindNode(3);
