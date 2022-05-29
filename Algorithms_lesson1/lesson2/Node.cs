@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_Homework2
+namespace Algorithms_lesson1
 {
     public class Node : ILinkedList
     {
@@ -155,6 +155,7 @@ namespace Algorithms_Homework2
 
             node1.RemoveNode(2);
             node1.RemoveNode(thirdnode);
+            //1,3,5
         }
     }
 }

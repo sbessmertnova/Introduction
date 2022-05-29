@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_Homework2
+namespace Algorithms_lesson1
 {
     public interface ILinkedList
     {
