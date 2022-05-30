@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson1", "Lesson1\Lesson1.csproj", "{791D1415-3762-4AC1-8889-43BB3CE3A5E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms_lesson1", "Algorithms_lesson1\Algorithms_lesson1.csproj", "{BA426E5A-B040-402D-A4E1-E16A8E7EBC06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms_lesson1", "Algorithms_lesson1\Algorithms_lesson1.csproj", "{BA426E5A-B040-402D-A4E1-E16A8E7EBC06}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
