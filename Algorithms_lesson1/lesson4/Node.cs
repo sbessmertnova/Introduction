@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,27 +12,28 @@ namespace Algorithms_lesson1.lesson4
         IsLeftChild,
         IsRightChild
     }
+
     public class Node<T>
     {
         public T Value { get; set; }
         public Node<T> LeftNode { get; set; }
         public Node<T> RightNode { get; set; }
         public Node<T> Parent { get; set; }
-        public ParentLinkType? GetParentLinkType
+        public ParentLinkType? ParentLinkType
         {
             get
             {
-                if (this.Parent.LeftNode == null)
+                if (this.Parent == null)
                 {
                     return null;
                 }
                 if (this.Parent.LeftNode == this)
                 {
-                    return ParentLinkType.IsLeftChild;
+                    return lesson4.ParentLinkType.IsLeftChild;
                 }
                 else
                 {
-                    return ParentLinkType.IsRightChild;
+                    return lesson4.ParentLinkType.IsRightChild;
                 }
             }
         }
@@ -47,35 +49,40 @@ namespace Algorithms_lesson1.lesson4
         }
         public void AddNode(Node<int> tree, int value)
         {
-            if (SearchNode(tree, value)!=null)
+            if (SearchNode(tree, value) != null)
             {
                 Console.WriteLine("This node already exist");
             }
             else
             {
                 var root = SearchRoot(tree);
-                SearchSpace(root.Value, tree);
+                AddNode(value, tree);
             }
         }
-        public static void SearchSpace(int rootValue, Node<int> tree)
+
+        public static void AddNode(int newValue, Node<int> tree)
         {
-            if (tree.Value>rootValue)
+            if (newValue > tree.Value)
             {
                 if (tree.RightNode == null)
                 {
-                    var newNode = new Node<int> { Value = tree.Value };
-                    tree.Parent.RightNode = newNode;
+                    var newNode = new Node<int> { Value = newValue };
+                    tree.RightNode = newNode;
+                    newNode.Parent = tree;
+                    return;
                 }
-                SearchSpace(tree.Value, tree.RightNode);
+                AddNode(newValue, tree.RightNode);
             }
             else
             {
                 if (tree.LeftNode == null)
                 {
-                    var newNode = new Node<int> { Value = tree.Value };
-                    tree.Parent.LeftNode = newNode;
+                    var newNode = new Node<int> { Value = newValue };
+                    tree.LeftNode = newNode;
+                    newNode.Parent = tree;
+                    return;
                 }
-                SearchSpace(tree.Value, tree.LeftNode);
+                AddNode(newValue, tree.LeftNode);
             }
         }
         public static Node<int> SearchRoot(Node<int> tree)
@@ -87,7 +94,7 @@ namespace Algorithms_lesson1.lesson4
             else
             {
                 return SearchRoot(tree.Parent);
-            }      
+            }
         }
         public void RemoveNode(Node<int> tree, int value)
         {
@@ -111,8 +118,9 @@ namespace Algorithms_lesson1.lesson4
             }
             else
             {
-                var minNode = SearchMinNode(tempNode.RightNode);
-                if (tempNode.GetParentLinkType == ParentLinkType.IsLeftChild)
+                //var minNode = SearchMinNode(tempNode.RightNode);
+                var minNode = SearchMinNode(tempNode.LeftNode);
+                if (tempNode.ParentLinkType == lesson4.ParentLinkType.IsLeftChild)
                 {
                     tempNode.Parent.LeftNode = minNode;
                 }
@@ -120,22 +128,31 @@ namespace Algorithms_lesson1.lesson4
                 {
                     tempNode.Parent.RightNode = minNode;
                 }
+                minNode.Parent = tempNode.Parent;
+                minNode.RightNode = tempNode.RightNode;
+
+                tempNode.Parent = null;
+                tempNode.LeftNode = null;
+                tempNode.RightNode = null;
             }
         }
         public static Node<int> SearchMinNode(Node<int> tree)
         {
-            if (tree.LeftNode==null)
+            if (tree.LeftNode == null)
             {
                 return tree;
             }
-            else
-            {
-                return SearchMinNode(tree);
-            }
+
+            return SearchMinNode(tree.LeftNode);
         }
         public static Node<int> SearchNode(Node<int> tree, int value)
         {
-            switch (value.CompareTo(tree.Value))
+            //            switch (value.CompareTo(tree.Value))
+            if (tree == null)
+            {
+                return null;
+            }
+            switch (tree.Value.CompareTo(value))
             {
                 case 0: return tree;
                 case 1: return SearchNode(tree.LeftNode, value);
@@ -143,20 +160,24 @@ namespace Algorithms_lesson1.lesson4
                 default: return null;
             }
         }
-        public static void RemoveTailNode(Node<int>tree)
+        public static void RemoveTailNode(Node<int> tree)
         {
-            if (tree.Parent.LeftNode == tree)
+            switch (tree.ParentLinkType)
             {
-                tree.Parent.LeftNode = null;
+                case lesson4.ParentLinkType.IsLeftChild:
+                    tree.Parent.LeftNode = null;
+                    break;
+                case lesson4.ParentLinkType.IsRightChild:
+                    tree.Parent.RightNode = null;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException("Cannot remove node without parents");
             }
-            else
-            {
-                tree.Parent.RightNode = null;
-            }
+            tree.Parent = null;
         }
         public static bool IsTail(Node<int> tree)
         {
-            return tree.RightNode == null&& tree.LeftNode == null;
+            return tree.RightNode == null && tree.LeftNode == null;
         }
         public static bool OnlyLeftChild(Node<int> tree)
         {
