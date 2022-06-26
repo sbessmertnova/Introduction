@@ -152,14 +152,42 @@ namespace Algorithms_lesson1.lesson4
             {
                 return null;
             }
-            switch (tree.Value.CompareTo(value))
+            var comparison = tree.Value.CompareTo(value);
+            Console.WriteLine($"Comparing node with value {tree.Value} with value {value}");
+            switch (comparison)
             {
-                case 0: return tree;
-                case 1: return SearchNode(tree.LeftNode, value);
-                case -1: return SearchNode(tree.RightNode, value);
+                case 0:
+                    Console.WriteLine($"Value {value} found");
+                        return tree;
+                case 1:
+                    Console.WriteLine($"Value {value} is less than node value {tree.Value}. Going to left node with value {tree.LeftNode?.Value}");
+                    return SearchNode(tree.LeftNode, value);
+                case -1:
+                    Console.WriteLine($"Value {value} is more than node value {tree.Value}. Going to right node with value {tree.RightNode?.Value}");
+                    return SearchNode(tree.RightNode, value);
                 default: return null;
             }
         }
+
+        public static Node<int> SearchNodeByWidth (List<Node<int>> tree, int value)
+        {
+            if (tree == null)
+            {
+                return null;
+            }
+            Console.WriteLine($"Searching value {value} in {string.Join(',', tree.Select(node => node.Value))}");
+            var result = tree.FirstOrDefault(node => node.Value == value);
+            if (result != null)
+            {
+                Console.WriteLine($"Value {value} found");
+                return result;
+            }
+            var children = tree.Select(node => new List<Node<int>> { node.LeftNode, node.RightNode }).SelectMany(node=> node).Where(node=>node!=null).ToList();
+            Console.WriteLine($"Value {value} not found. Searching in children");
+            return SearchNodeByWidth(children, value);
+        }
+        public static Node<int> SearchNodeByWidth(Node<int> tree, int value) => SearchNodeByWidth(new List<Node<int>> { tree }, value);
+
         public static void RemoveTailNode(Node<int> tree)
         {
             switch (tree.ParentLinkType)
