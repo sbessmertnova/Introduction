@@ -1,5 +1,7 @@
 ﻿using Algorithms_lesson1.lesson3;
 using Algorithms_lesson1.lesson4;
+using Algorithms_lesson1.lesson8;
+
 using System;
 
 namespace Algorithms_lesson1
@@ -16,7 +18,8 @@ namespace Algorithms_lesson1
                     "\nУрок №3 - 3; " +
                     "\nУрок №4 - 4; " +
                     "\nУрок №5 - 5; " +
-                    //"\nУрок №6 - 6; \nУрок №7 - 7; \nУрок №8 - 8;" +
+                    //"\nУрок №6 - 6; \nУрок №7 - 7;
+                    "\nУрок №8 - 8;" +
                     " \nЗавершить - 0;" +
                     "\nРешение какого урока запустить? Введите соответствующее число: ");
                 int lessonNumber = int.Parse(Console.ReadLine());
@@ -66,6 +69,12 @@ namespace Algorithms_lesson1
                         SearchNodeTests.TestNode();
                         break;
 
+
+                    case 8:
+                        Console.Clear();
+                        Console.WriteLine("Выполнение задания 8 урока");
+                        CountingSort.Output();
+                        break;
                     case 0:
                         Console.WriteLine("Завершение");
                         f = false;
