@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Algorithms_lesson1.lesson4
 {
-    public class NodeTest
+    public class SearchNodeTests
     {
-        private const int newNodeValue = 15;
-        private const int valueForSearch = 3;
+        private const int valueForSearch = 14;
         public static void TestNode()
         {
             var root = new Node<int>
@@ -67,29 +66,16 @@ namespace Algorithms_lesson1.lesson4
             node7.Parent = node6;
 
             root.PreOrderTravers(root);
-
-            root.AddNode(root, newNodeValue);
-            Console.WriteLine($"Проверка метода добавления. Дерево после добавления нового узла со значением {newNodeValue}");
-            root.PreOrderTravers(root);
-
-            root.RemoveNode(root, newNodeValue);
-            Console.WriteLine($"Проверка метода удаления. Дерево после удаления хвостового узла со значением {newNodeValue}");
-            root.PreOrderTravers(root);
-
-            root.RemoveNode(root, node6.Value);
-            Console.WriteLine($"Проверка метода удаления. Дерево после удаления узла из середины дерева со значением {node6.Value}");
-            root.PreOrderTravers(root);
-
-            root.AddNode(root, node6.Value);
-            Console.WriteLine($"Возвращаем удаленный узел со значением {node6.Value}. " +
-                $"Дерево после возвращения узла:");
-            root.PreOrderTravers(root);
-
             var foundNode = Node<int>.SearchNode(root, valueForSearch);
-            Console.WriteLine($"Проверка метода поиска. Найденный узел со значением {valueForSearch}:{Environment.NewLine}" +
+            Console.WriteLine($"Проверка метода поиска в глубину. Найденный узел со значением {valueForSearch}:{Environment.NewLine}" +
                 $"Value: {foundNode.Value} {Environment.NewLine}" +
                 $"Left node value: {foundNode.LeftNode?.Value}{Environment.NewLine}" +
                 $"Right node value: {foundNode.RightNode?.Value}){Environment.NewLine}");
+            foundNode = Node<int>.SearchNodeByWidth(root, valueForSearch);
+            Console.WriteLine($"Проверка метода поиска в ширину. Найденный узел со значением {valueForSearch}:{Environment.NewLine}" +
+               $"Value: {foundNode.Value} {Environment.NewLine}" +
+               $"Left node value: {foundNode.LeftNode?.Value}{Environment.NewLine}" +
+               $"Right node value: {foundNode.RightNode?.Value}){Environment.NewLine}");
         }
     }
 }
