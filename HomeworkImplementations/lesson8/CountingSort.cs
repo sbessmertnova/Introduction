@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_lesson1.lesson8
+namespace HomeworkImplementations.lesson8
 {
     public class CountingSort
     {

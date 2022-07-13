@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_lesson1
+namespace HomeworkImplementations.lesson1
 {
     public class PrimeNumberChecker
     {

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Algorithms_lesson1.lesson4
+namespace HomeworkImplementations.lesson4
 {
     public class NodeTest
     {
