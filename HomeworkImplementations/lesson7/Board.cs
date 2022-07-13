@@ -8,7 +8,6 @@ namespace HomeworkImplementations.lesson7
     {
         public List<CellInfo> Cells { get; set; }
         public bool isFinished => QueensAmount == 8;
-
         public int RowSize { get; set; }
         public int ColumnSize { get; set; }
 
@@ -50,7 +49,6 @@ namespace HomeworkImplementations.lesson7
                 QueensAmount = this.QueensAmount
             };
         }
-
         public static Board GetEmptyBoard()
         {
             var cells = 
@@ -73,13 +71,11 @@ namespace HomeworkImplementations.lesson7
             };
         }
     }
-
     public class CellInfo
     {
         public Coordinate Coordinate { get; set; }
         public bool OccupiedByQueen { get; set; }
     }
-
     public class Coordinate
     {
         public int X { get; set; }

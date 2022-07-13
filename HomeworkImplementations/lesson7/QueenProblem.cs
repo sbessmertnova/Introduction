@@ -41,17 +41,6 @@ namespace HomeworkImplementations.lesson7
                 });
 
             return nextBoards.SelectMany(nextBoard => GetSolutions(nextBoard));
-
-
-            //if(TryFindSafePlace(board, out var safeCoordinate))
-            //{
-            //    board.PlaceQueen(safeCoordinate);
-            //    return TryGetSolution(board);
-            //}
-            //else
-            //{
-            //    return false;
-            //}
         }
 
 
