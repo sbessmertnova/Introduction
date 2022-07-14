@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 
-namespace Algorithms_lesson1.lesson3
+namespace HomeworkImplementations.lesson3
 {
     public class PointsLengthTests
     {

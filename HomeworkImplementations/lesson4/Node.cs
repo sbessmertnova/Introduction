@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_lesson1.lesson4
+namespace HomeworkImplementations.lesson4
 {
     public enum ParentLinkType
     {
