@@ -22,7 +22,8 @@ namespace Algorithms_lesson1
                     "\nУрок №3 - 3; " +
                     "\nУрок №4 - 4; " +
                     "\nУрок №5 - 5; " +
-                    //"\nУрок №6 - 6; \nУрок №7 - 7;
+                    //"\nУрок №6 - 6;
+                    "\nУрок №7 - 7;" +
                     "\nУрок №8 - 8;" +
                     " \nЗавершить - 0;" +
                     "\nРешение какого урока запустить? Введите соответствующее число: ");
@@ -78,6 +79,12 @@ namespace Algorithms_lesson1
                         Console.WriteLine("Выполнение задания 5 урока");
                         //SearchNodeTests.TestNode();
                         homeworkImplementation.Lesson5();
+                        break;
+                    case 7:
+                        Console.Clear();
+                        Console.WriteLine("Выполнение задания 7 урока");
+                        //CountingSort.Output();
+                        homeworkImplementation.Lesson7();
                         break;
 
                     case 8:

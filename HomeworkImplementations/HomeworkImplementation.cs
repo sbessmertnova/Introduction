@@ -46,7 +46,7 @@ namespace HomeworkImplementations
 
         public void Lesson7()
         {
-            lesson7.QueenProblem.Test();
+            new lesson7.QueenProblem().Test();
         }
 
         public void Lesson8()
